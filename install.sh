@@ -36,3 +36,13 @@ dos2unix -q *.sh
 
 ./nginx-install.sh --fqdn $certbotfqdn --email $certbotemail                   # Install Nginx
 ./guac-install.sh --mysqlpwd $mysqlrootpassword --guacpwd $guacdbuserpassword  # Install Guacamole
+
+# Everyone needs to secure servers from bots.
+sudo apt-get install fail2ban -y
+
+touch /etc/fail2ban/jail.local
+echo "[guacamole]" >> /etc/fail2ban/jail.local
+echo "enabled=true" >> /etc/fail2ban/jail.local
+echo "port     = http,https" >>/etc/fail2ban/jail.local
+echo "logpath  = /var/log/tomcat*/catalina.out" >> /etc/fail2ban/jail.local
+systemctl restart fail2ban
