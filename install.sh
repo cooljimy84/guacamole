@@ -30,5 +30,9 @@ else
   exit 1
 fi
 
+# Install some missing packages
+sudo apt-get install software-properties-common dos2unix -y
+dos2unix -q *.sh
+
 ./nginx-install.sh --fqdn $certbotfqdn --email $certbotemail                   # Install Nginx
 ./guac-install.sh --mysqlpwd $mysqlrootpassword --guacpwd $guacdbuserpassword  # Install Guacamole
