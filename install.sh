@@ -30,10 +30,14 @@ else
   exit 1
 fi
 
-# Install some missing packages
+# Install some missing packages and change freeRDP
 sudo apt-get install software-properties-common dos2unix -y
+sudo add-apt-repository ppa:remmina-ppa-team/freerdp-daily -y
+sudo apt-get update
+sudo apt-get install freerdp2-dev freerdp2-x11 -y
 dos2unix -q *.sh
 
+# Run the other scripts
 ./nginx-install.sh --fqdn $certbotfqdn --email $certbotemail                   # Install Nginx
 ./guac-install.sh --mysqlpwd $mysqlrootpassword --guacpwd $guacdbuserpassword  # Install Guacamole
 
