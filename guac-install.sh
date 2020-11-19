@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Version numbers of Guacamole and MySQL Connector/J to download
-GUACVERSION="0.9.14"
+GUACVERSION="1.2.0"
 
 # Update package lists
 apt-get update
